@@ -1,0 +1,46 @@
+package com.example.log
+
+import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import com.example.log.ui.main.MainViewModel
+import java.sql.Timestamp
+
+class Logs: LifecycleObserver {
+
+    private val LogTag = "LOG"
+    var View = MainViewModel
+    val timestamp = Timestamp(System.currentTimeMillis())
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onResume() {
+        View.addToOutputText("onResume logged at $timestamp \n ************")
+        Log.i(LogTag, "onResume")
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onPause() {
+        View.addToOutputText("onPause logged at $timestamp \n ************")
+        Log.i(LogTag, "onPause")
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun onCreate() {
+        View.addToOutputText("onCreate logged at $timestamp")
+        Log.i(LogTag, "onCreate")
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onStart() {
+        View.addToOutputText("onStart logged at $timestamp")
+        Log.i(LogTag, "onStart")
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onStop() {
+        View.addToOutputText("onStop logged at $timestamp")
+        Log.i(LogTag, "onStop")
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onDestroy() {
+        View.addToOutputText("onDestroy logged at $timestamp \n ************")
+        Log.i(LogTag, "onDestroy")
+    }
+}
